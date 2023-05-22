@@ -5,30 +5,34 @@
   <title>Orientierungslauf</title>
 </head>
 <body>
-<p>Der Orientierungslauf startet in <span id="seconds">x</span> Sekunden.</p>
+<p>Der Orientierungslauf startet in <span id="time">x</span> Minuten.</p>
 <script> // Countdown timer for redirecting to another URL after several seconds
-var seconds = 10000; // seconds for HTML
+var minutes = 10; // minutes for HTML
+var seconds = minutes * 60; // convert minutes to seconds
 var foo; // variable for clearInterval() function
-
 function redirect() {
-  window.location.href = 'https://forms.gle/57urPfJ8hCNovTCm6';
+window.location.href = 'https://forms.gle/57urPfJ8hCNovTCm6';
 }
 
-function updateSecs() {
-  document.getElementById("seconds").innerHTML = seconds;
-  seconds--;
-  if (seconds === -1) {
-    clearInterval(foo);
-    redirect();
-  }
+function updateTime() {
+var mins = Math.floor(seconds / 60); // calculate remaining minutes
+var secs = seconds % 60; // calculate remaining seconds
+
+document.getElementById("time").innerHTML = mins + " Minuten und " + secs + " Sekunden";
+seconds--;
+
+if (seconds === -1) {
+clearInterval(foo);
+redirect();
+}
 }
 
 function countdownTimer() {
-  foo = setInterval(updateSecs, 1000);
+foo = setInterval(updateTime, 1000);
 }
 
 countdownTimer(); // Start the countdown timer
 </script>
+
 </body>
 </html>
-
