@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<p>Der Orientierungslauf startet in <span id="seconds">x</span> Sekunden.</p>
+<script> // Countdown timer for redirecting to another URL after several seconds
+var seconds = 10; // seconds for HTML
+var foo; // variable for clearInterval() function
+
+function redirect() {
+  window.location.href = 'https://forms.gle/57urPfJ8hCNovTCm6';
+}
+
+function updateSecs() {
+  document.getElementById("seconds").innerHTML = seconds;
+  seconds--;
+  if (seconds === -1) {
+    clearInterval(foo);
+    redirect();
+  }
+}
+
+function countdownTimer() {
+  foo = setInterval(updateSecs, 1000);
+}
+
+countdownTimer(); // Start the countdown timer
+</script>
+</body>
+</html>
+
